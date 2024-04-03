@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  springboot:
+    build: ./
+    ports:
+      - "8080:8080"
+
+  react:
+    build: ./src/main/frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - springboot
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - react
+      - springboot
+      

@@ -1,0 +1,122 @@
+.today__inner {
+    display: flex;
+    border: 1px solid var(--black600);
+    margin-bottom: 40px;
+
+    .today__thumb {
+        width: 600px;
+
+        a {
+            display: block;
+            cursor: pointer;
+            width: 100%;
+            padding-bottom: 56.25%;
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+    }
+
+    .today__text {
+        width: calc(100% - 600px);
+        height: 310px;
+        padding: 2rem;
+        position: relative;
+
+        .today {
+            background-color: var(--red);
+            color: var(--white);
+            padding: 1px 30px;
+            display: inline-block;
+            border-radius: 40px;
+            margin-bottom: 10px;
+        }
+
+        .title {
+            line-height: 1.4;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .desc {
+            color: var(--black300);
+            @include line(3);
+        }
+
+        .info {
+            position: absolute;
+            left: 2rem;
+            bottom: 2rem;
+
+            .author {
+                background-color: var(--black600);
+                padding: 3px 20px;
+            }
+
+            .data {
+                color: var(--black400);
+                font-size: 14px;
+                padding-left: 5px;
+            }
+        }
+    }
+
+    @media (max-width: 1400px) {
+        .today__thumb {
+            width: 400px;
+        }
+
+        .today__text {
+            width: calc(100% - 400px);
+            height: auto;
+
+            .desc {
+                display: none;
+            }
+        }
+    }
+
+    @media (max-width: 1200px) {
+
+
+        .today__thumb {
+            width: 330px;
+        }
+
+        .today__text {
+            width: calc(100% - 330px);
+
+            .title {
+                @include line(1)
+            }
+
+            .info {
+                display: none;
+            }
+        }
+    }
+
+
+}
+
+@media (max-width: 600px) {
+    .today__inner {
+        flex-direction: column;
+
+        .today__thumb {
+            width: 100%;
+        }
+
+        .today__text {
+            width: 100%;
+            padding: 1rem;
+
+            .desc {
+                display: block;
+            }
+        }
+    }
+
+
+}
