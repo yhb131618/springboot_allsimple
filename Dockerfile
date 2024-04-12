@@ -15,7 +15,7 @@ FROM tomcat:9.0-jdk17-openjdk
 RUN rm -rf /usr/local/tomcat/webapps/*
 
 # 빌드 단계에서 생성된 WAR 파일을 Tomcat 웹 애플리케이션 디렉토리로 복사
-COPY --from=builder /home/gradle/src/build/libs/*.war /usr/local/tomcat/webapps/ROOT.war
+COPY --from=builder /home/gradle/src/build/libs/*.war /usr/local/tomcat/webapps/
 
 # 톰캣 실행
 CMD ["catalina.sh", "run"]
