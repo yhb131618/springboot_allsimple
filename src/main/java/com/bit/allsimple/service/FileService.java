@@ -8,7 +8,7 @@ import com.bit.allsimple.entity.File;
 
 public interface FileService {
 
-    public String uploadFile(MultipartFile file, String bucketName, String directoryName);
+    public String uploadFile(MultipartFile file, String bucketName, String directoryName, String videoFileName);
 
     public String getDownloadUrl(String fileName, String bucketName, String directoryName);
 

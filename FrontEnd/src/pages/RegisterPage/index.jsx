@@ -1,8 +1,7 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
-import { registerUser } from '../../store/thunkFunctions'
-
+import { join } from '../../apis/userApi'
 const RegisterPage = () => {
   const {
     register,
@@ -12,27 +11,35 @@ const RegisterPage = () => {
   } = useForm({ mode: 'onChange' })
   const dispatch = useDispatch();
 
-  const onSubmit = ({ email, password, name }) => {
+  const onSubmit = ({ userId, userPw, userName, userTel }) => {
 
     const body = {
-      email,
-      password,
-      name,
-      image: `https://via.placeholder.com/600x400?text=no+user+image`
+      userId,
+      userPw,
+      userPwChk,
+      userName,
+      userTel,
     }
 
-    dispatch(registerUser(body));
+    dispatch(join(body));
 
     reset();
   }
 
-  const userEmail = {
+  const userId = {
     required: "필수 필드입니다."
   }
   const userName = {
     required: "필수 필드입니다."
   }
-  const userPassword = {
+  const userTel = {
+    required: "필수 필드입니다."
+  }
+
+  const  userPwChk = {
+    required: "필수 필드입니다."
+  }
+  const userPw = {
     required: '필수 필드입니다.',
     minLength: {
       value: 6,
@@ -49,20 +56,20 @@ const RegisterPage = () => {
         <form className='mt-6' onSubmit={handleSubmit(onSubmit)}>
           <div className='mb-2'>
             <label
-              htmlFor='email'
+              htmlFor='userId'
               className='text-sm font-semibold text-gray-800'
             >Email</label>
             <input
               type='email'
-              id="email"
-              className='w-full px-4 py-2 mt-2 bg-white border rounded-md'
-              {...register('email', userEmail)}
+              id="userId"
+              className='w-full px-4 py-2 mt-2 bg-blue-100 border rounded-md'
+              {...register('userId', userId)}
             />
             {
-              errors?.email &&
+              errors?.userId &&
               <div>
                 <span className='text-red-500'>
-                  {errors.email.message}
+                  {errors.userId.message}
                 </span>
               </div>
             }
@@ -76,7 +83,7 @@ const RegisterPage = () => {
             <input
               type='text'
               id="name"
-              className='w-full px-4 py-2 mt-2 bg-white border rounded-md'
+              className='w-full px-4 py-2 mt-2 bg-blue-100 border rounded-md'
               {...register('name', userName)}
             />
             {
@@ -97,14 +104,57 @@ const RegisterPage = () => {
             <input
               type='password'
               id="password"
-              className='w-full px-4 py-2 mt-2 bg-white border rounded-md'
-              {...register('password', userPassword)}
+              className='w-full px-4 py-2 mt-2b bg-blue-100 border rounded-md'
+              {...register('userPw', userPw)}
             />
             {
               errors?.password &&
               <div>
                 <span className='text-red-500'>
                   {errors.password.message}
+                </span>
+              </div>
+            }
+          </div>
+
+          <div className='mb-2'>
+            <label
+              htmlFor=' userPwChk'
+              className='text-sm font-semibold text-gray-800'
+            > userPwChk</label>
+            <input
+              type='text'
+              id=" userPwChk"
+              className='w-full px-4 py-2 mt-2 bg-blue-100 border rounded-md'
+              {...register('userTel', userTel)}
+            />
+            {
+              errors?. userPwChk &&
+              <div>
+                <span className='text-red-500'>
+                  {errors. userPwChk.message}
+                </span>
+              </div>
+            }
+          </div>
+
+
+          <div className='mb-2'>
+            <label
+              htmlFor='Tel'
+              className='text-sm font-semibold text-gray-800'
+            >Tel</label>
+            <input
+              type='tel'
+              id="Tel"
+              className='w-full px-4 py-2 mt-2 bg-blue-100 border rounded-md'
+              {...register('userTel', userTel)}
+            />
+            {
+              errors?.Tel &&
+              <div>
+                <span className='text-red-500'>
+                  {errors.Tel.message}
                 </span>
               </div>
             }

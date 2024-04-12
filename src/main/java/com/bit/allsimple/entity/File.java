@@ -27,16 +27,19 @@ public class File {
     private Date fileDate;
     @Lob
     private String fileUrl;
+    private String filevideoFileName;
 
     // 기본 생성자 추가
     protected File() {
     }
 
-    public File(String fileBucket, String fileDirectory, String fileOriginName, String fileName, String fileUrl) {
+    public File(String fileBucket, String fileDirectory, String fileOriginName, String fileName, String fileUrl,
+            String filevideoFileName) {
         this.fileBucket = fileBucket; // 버킷은 사용자 id로 생성
         this.fileDirectory = fileDirectory; // 디렉토리는 해당 페이지 이름으로 생성(게시판,컨텐츠, 쇼핑)
         this.fileOriginName = fileOriginName;
         this.fileName = fileName;
         this.fileUrl = fileUrl;
+        this.filevideoFileName = filevideoFileName;
     }
 }

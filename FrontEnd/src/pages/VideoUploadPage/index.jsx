@@ -12,13 +12,13 @@ const VideoUpload = () => {
   const [directoryName, setDirectoryName] = useState('video');
   const [videoName, setVideoName] = useState(''); 
   const [videoTag, setVideoTag] = useState(''); 
-  const [videoBucketName, setVideoBucketName] = useState('test'); 
-  const [videoDirectoryName, setVideoDirectoryName] = useState('videoinfo'); 
   const [thumbNailImage, setThumbNailImage] = useState(''); 
   const [selectedThumbNailFile, setSelectedThumbNailFile] = useState(null);
   const [thumbNailBucketName, seTthumbNailBucketName] = useState('test'); 
   const [thumbNailDirectoryName, setThumbNailDirectoryName] = useState('thumbNail'); 
   const [videoFileName, setVideoFileName] = useState(''); // 동영상 파일 이름을 저장할 상태
+  const [videoChannelName, setvideoChannelName] = useState('test'); // 동영상 파일 이름을 저장할 상태
+
 
   // 상태를 초기화하는 함수
   const handleReset = () => {
@@ -42,8 +42,11 @@ const VideoUpload = () => {
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
-      setSelectedFile(file); // 파일 상태 업데이트
-      setVideoFileName(`${file.name}:${bucketName}`);
+        setSelectedFile(file); // 파일 상태 업데이트
+        const timestamp = Date.now(); // 현재 시간의 타임스탬프
+        // 파일 이름, 타임스탬프, bucketName을 결합하여 상태 업데이트
+        setVideoFileName(`${bucketName}_${timestamp}_${file.name} `);
+        console.log(setVideoFileName);
     }
 };
 
@@ -75,21 +78,20 @@ const VideoUpload = () => {
     thumbNailFormData.append('file', selectedThumbNailFile);
     thumbNailFormData.append('thumbNailBucketName', thumbNailBucketName);
     thumbNailFormData.append('thumbNailDirectoryName', thumbNailDirectoryName);
-    thumbNailFormData.append('videoFileName', videoFileName);
+    thumbNailFormData.append('filevideoFileName', videoFileName);
 
     // 비디오 정보 제출을 위한 formData 준비
     const videoInfoFormData = new FormData();
-    videoInfoFormData.append('videoName', videoName);
-    videoInfoFormData.append('videoTag', videoTag);
-    videoInfoFormData.append('bucketName', videoBucketName);
-    videoInfoFormData.append('directoryName', videoDirectoryName);
-    videoInfoFormData.append('videoFileName', videoFileName);
+    videoInfoFormData.append('vedeoinfoName', videoName);
+    videoInfoFormData.append('vedeoinfoTag', videoTag);
+    videoInfoFormData.append('videoinfoChannel', videoChannelName);
+    videoInfoFormData.append('filevideoFileName', videoFileName);
     // 필요한 경우 파일도 포함시킬 수 있습니다.
     // videoInfoFormData.append('file', selectedFile);
   
     try {
       // 썸네일 업로드
-        const thumbNailResponsePromise = axios.post('http://localhost:8080/files/thumbNail', thumbNailFormData, {
+      const thumbNailResponsePromise = axios.post('http://localhost:8080/thumbnail/thumbnailUpload', thumbNailFormData, {
             headers: {
             'Content-Type': 'multipart/form-data',
             },
@@ -102,7 +104,7 @@ const VideoUpload = () => {
       });
   
       // 비디오 정보 제출 요청
-      const videoInfoResponsePromise = axios.post('http://localhost:8080/files/video', videoInfoFormData, {
+      const videoInfoResponsePromise = axios.post('http://localhost:8080/video/videoInfoSet', videoInfoFormData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -138,9 +140,7 @@ const VideoUpload = () => {
         hover:file:bg-violet-100"
         />
     </div>
-      {/* 선택된 파일 이름을 화면에 표시 */}
-      {videoFileName && <Typography variant="subtitle1">선택된 동영상: {videoFileName}</Typography>}
-  
+ 
 
 
     <Typography component='h1' variant='h6'> 썸네일 업로드 </Typography>

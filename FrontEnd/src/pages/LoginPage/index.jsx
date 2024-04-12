@@ -1,7 +1,7 @@
-import React from 'react'
-import { useForm } from 'react-hook-form'
-import { useDispatch } from 'react-redux'
-import { loginUser } from '../../store/thunkFunctions'
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { loginUser } from '../../store/thunkFunctions';
 
 const LoginPage = () => {
   const {
@@ -11,7 +11,9 @@ const LoginPage = () => {
     reset
   } = useForm({ mode: 'onChange' })
 
+
   const dispatch = useDispatch();
+
 
   const onSubmit = ({ email, password }) => {
 
@@ -23,6 +25,8 @@ const LoginPage = () => {
     dispatch(loginUser(body));
     reset();
   }
+
+
 
   const userEmail = {
     required: "필수 필드입니다."

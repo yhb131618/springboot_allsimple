@@ -1,7 +1,5 @@
 package com.bit.allsimple.service.impl;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,7 +26,7 @@ public class FileStorageServiceImpl implements FileService {
     private FileRepository fileRepository;
 
     @Override
-    public String uploadFile(MultipartFile file, String bucketName, String directoryName) {
+    public String uploadFile(MultipartFile file, String bucketName, String directoryName, String videoFileName) {
         String fileUrl = "";
         try {
             // 버킷이 존재하지 않는 경우 생성
@@ -37,16 +35,15 @@ public class FileStorageServiceImpl implements FileService {
                 minioClient.makeBucket(MakeBucketArgs.builder().bucket(bucketName).build());
             }
 
-            // 파일 이름 앞에 'play/' 디렉토리 경로 추가
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyMMdd");
-            String formattedDate = dateFormat.format(new Date());
-
-            String fileName = directoryName + "/" + formattedDate + "_" + file.getOriginalFilename();
+            String filevideoFileName = videoFileName;
+            String fileName = file.getOriginalFilename();
             String fileOriginName = file.getOriginalFilename();
             String fileDirectory = directoryName;
             String fileBucket = bucketName;
+
+            String filePath = directoryName + "/" + videoFileName;
             minioClient.putObject(
-                    PutObjectArgs.builder().bucket(bucketName).object(fileName)
+                    PutObjectArgs.builder().bucket(bucketName).object(filePath)
                             .stream(file.getInputStream(), file.getSize(), -1)
                             .contentType(file.getContentType())
                             .build());
@@ -55,12 +52,12 @@ public class FileStorageServiceImpl implements FileService {
                     GetPresignedObjectUrlArgs.builder()
                             .method(Method.GET)
                             .bucket(bucketName)
-                            .object(fileName)
+                            .object(filePath)
                             // .expiry(10 * 60) // 10분 후 만료
                             .build());
 
             try {
-                File files = new File(fileBucket, fileDirectory, fileOriginName, fileName, fileUrl);
+                File files = new File(fileBucket, fileDirectory, fileOriginName, fileName, fileUrl, filevideoFileName);
                 fileRepository.save(files);
             } catch (Exception e) {
                 e.printStackTrace();

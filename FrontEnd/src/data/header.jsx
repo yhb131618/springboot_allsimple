@@ -3,9 +3,9 @@ import { CiAirportSign1, CiStar, CiTrophy } from 'react-icons/ci';
 
 export const menuText = [
     {
-        title: "여행 유튜버 홈",
+        title: "MY 유튜버 홈",
         icon: <CiAirportSign1 />,
-        src: "/"
+        src: "/videoplay"
     }, {
         title: "오늘의 추천 픽!!",
         icon: <CiTrophy />,

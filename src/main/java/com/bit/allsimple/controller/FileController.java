@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -72,13 +73,15 @@ public class FileController {
             RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.OPTIONS })
 
     @PostMapping("/upload")
-    public ResponseEntity<?> uploadFile(@RequestParam("file") MultipartFile file,
-            @RequestParam("bucketName") String bucketName, @RequestParam("directoryName") String directoryName) {
+    public ResponseEntity<?> uploadFile(
+            @RequestPart("file") MultipartFile file,
+            @RequestParam("bucketName") String bucketName,
+            @RequestParam("directoryName") String directoryName,
+            @RequestParam("videoFileName") String videoFileName) {
         // 파일 이름 가져오기
-
         try {
 
-            String fileUrl = fileStorageService.uploadFile(file, bucketName, directoryName);
+            String fileUrl = fileStorageService.uploadFile(file, bucketName, directoryName, videoFileName);
             System.out.println(fileUrl);
             return ResponseEntity.ok().body(Map.of("message", "File uploaded successfully", "url", fileUrl));
         } catch (Exception e) {

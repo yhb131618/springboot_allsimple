@@ -20,13 +20,23 @@ function Play() {
     fetchFiles();
   }, []); // 의존성 배열이 빈 배열이므로 컴포넌트 마운트 시 1회 실행
 
+  // 비디오 재생을 시작하거나 일시 정지하는 함수
+  const handleMouseEnter = (event) => {
+    event.target.play();
+  };
 
+  const handleMouseLeave = (event) => {
+    event.target.pause();
+  };
   return (
 <div className="grid-container">
             {files.map((file, index) => (
                 <div className="grid-item" key={index}>
                     <div className="video-player" style={{ marginTop: '10px' }}>
-                        <video width="100%" controls>
+                        <video width="100%" 
+                                      controls
+                                      onMouseEnter={handleMouseEnter}
+                                      onMouseLeave={handleMouseLeave}>
                             <source src={file.fileUrl} type="video/mp4" />
                             Your browser does not support the video tag.
                         </video>

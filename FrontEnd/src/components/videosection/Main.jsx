@@ -1,5 +1,5 @@
 import React from 'react'
-import { Helmet, HelmetProvider } from 'react-helmet-async'
+import { HelmetProvider } from 'react-helmet-async'
 import ScrollTo from '../../utils/scrollTo'
 
 import Header from './Header'
@@ -9,14 +9,15 @@ const Main = (props) => {
     return (
         <HelmetProvider>
             <ScrollTo />
-            <Helmet
+            {/* <Helmet
                 titleTemplate="%s | Traverler Youtube"
                 defaultTitle="Traverler Youtube"
                 defer={false}
             >
                 {props.title && <title>{props.title}</title>}
                 <meta name="description" content={props.description} />
-            </Helmet>
+            </Helmet> */}
+            {/* 브라우저 탭 제목 치환 */}
 
             <Header />
             <main id='video_main' role='main'>
