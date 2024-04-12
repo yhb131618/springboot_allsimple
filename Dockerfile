@@ -16,4 +16,3 @@ COPY --from=builder /home/gradle/src/build/libs/*.jar app.jar
 
 # 애플리케이션 실행
 ENTRYPOINT ["java","-jar","/app.jar"]
-위 도커파일인데 톰캣환경에서 실행될 수 있게 도커 파일 수정해줘 
