@@ -12,7 +12,7 @@ RUN gradle build --no-daemon
 FROM openjdk:17-jdk-alpine
 
 # 빌드 단계에서 생성된 JAR 파일을 런타임 이미지로 복사
-COPY --from=builder /home/gradle/src/build/libs/*.jar app.jar
+COPY --from=builder /home/gradle/src/build/libs/*.jar /app.jar
 
 # 애플리케이션 실행
 ENTRYPOINT ["java","-jar","/app.jar"]
