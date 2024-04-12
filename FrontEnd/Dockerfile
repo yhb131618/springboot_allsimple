@@ -9,7 +9,8 @@ WORKDIR /app
 # Install dependencies
 COPY package*.json ./
 RUN npm install
-
+ARG REACT_APP_BACKEND_URL
+ENV REACT_APP_BACKEND_URL=$REACT_APP_BACKEND_URL
 # Copy source files
 COPY . .
 
