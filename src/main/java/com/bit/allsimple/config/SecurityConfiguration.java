@@ -38,15 +38,16 @@ public class SecurityConfiguration {
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorizationManagerRequestMatcherRegistry -> {
                     authorizationManagerRequestMatcherRegistry
-                            .requestMatchers(new AntPathRequestMatcher("/board/**")).hasAnyRole("ADMIN", "USER")
-                            .requestMatchers(new AntPathRequestMatcher("/admin/**")).hasRole("ADMIN")
-                            .requestMatchers(new AntPathRequestMatcher("/user/login")).permitAll()
                             .requestMatchers(new AntPathRequestMatcher("/")).permitAll()
                             .requestMatchers(new AntPathRequestMatcher("/files/**")).permitAll()
                             .requestMatchers(new AntPathRequestMatcher("/thumbnail/**")).permitAll()
                             .requestMatchers(new AntPathRequestMatcher("/video/**")).permitAll()
                             .requestMatchers(new AntPathRequestMatcher("/files/**")).permitAll()
                             .requestMatchers(new AntPathRequestMatcher("/api/hello")).permitAll()
+                            .requestMatchers(new AntPathRequestMatcher("/board/**")).hasAnyRole("ADMIN", "USER")
+                            .requestMatchers(new AntPathRequestMatcher("/admin/**")).hasRole("ADMIN")
+                            .requestMatchers(new AntPathRequestMatcher("/user/login")).permitAll()
+
                             .requestMatchers(new AntPathRequestMatcher("/user/join")).permitAll()
                             .requestMatchers(new AntPathRequestMatcher("/user/id-check")).permitAll()
                             .anyRequest().authenticated();
