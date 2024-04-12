@@ -91,20 +91,20 @@ const VideoUpload = () => {
   
     try {
       // 썸네일 업로드
-      const thumbNailResponsePromise = axios.post('http://localhost:8080/thumbnail/thumbnailUpload', thumbNailFormData, {
+      const thumbNailResponsePromise = axios.post('${process.env.REACT_APP_BACKEND_URL}/thumbnail/thumbnailUpload', thumbNailFormData, {
             headers: {
             'Content-Type': 'multipart/form-data',
             },
         });
       // 파일 업로드 요청
-      const uploadResponsePromise = axios.post('http://localhost:8080/files/upload', uploadFormData, {
+      const uploadResponsePromise = axios.post('${process.env.REACT_APP_BACKEND_URL}/files/upload', uploadFormData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
   
       // 비디오 정보 제출 요청
-      const videoInfoResponsePromise = axios.post('http://localhost:8080/video/videoInfoSet', videoInfoFormData, {
+      const videoInfoResponsePromise = axios.post('${process.env.REACT_APP_BACKEND_URL}/video/videoInfoSet', videoInfoFormData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
