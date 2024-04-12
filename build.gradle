@@ -4,6 +4,9 @@ plugins {
     id 'java'
 }
 
+bootJar {
+    archiveFileName = "myapp.jar"
+}
 group = 'com.bit'
 version = '0.0.1-SNAPSHOT'
 
