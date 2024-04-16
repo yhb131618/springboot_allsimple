@@ -11,8 +11,8 @@ import Navbar from './layout/Navbar'
 import CartPage from './pages/CartPage'
 import DetailProductPage from './pages/DetailProductPage'
 import HistoryPage from './pages/HistoryPage'
-import LandingPage from './pages/LandingPage'
 import LoginPage from './pages/LoginPage'
+import PortFolio from './pages/PortFolioPage'
 import ProtectedPage from './pages/ProtectedPage'
 import RegisterPage from './pages/RegisterPage'
 import UploadProductPage from './pages/UploadProductPage'
@@ -61,7 +61,9 @@ function App() {
     <Routes>
       <Route path='/' element={<Layout />} >
 
-        <Route index element={<LandingPage />} />
+        {/* <Route index element={<LandingPage />} /> */}
+        <Route index element={<PortFolio />} />
+        <Route path="/portfolio" element={<PortFolio />} />
         <Route path="/videoupload" element={<VideoUpload />} /> 
         <Route path="/videoplay" element={<VideoPlay />} /> 
         

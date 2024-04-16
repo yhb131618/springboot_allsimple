@@ -6,6 +6,7 @@ import { logoutUser } from '../../../store/thunkFunctions';
 
 
 const routes = [
+  { to: '/portfolio', name: '포트폴리오', auth: false},
   { to: '/videoplay', name: '동영상플레이', auth: false},
   { to: '/videoupload', name: '동영상업로드', auth: false},
   { to: '/login', name: '로그인', auth: false },
