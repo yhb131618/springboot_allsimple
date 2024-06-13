@@ -2,7 +2,7 @@
 FROM gradle:7.2-jdk17 as builder
 
 # 소스 코드를 이미지 내부로 복사
-COPY --chown=gradle:gradle ./Back /home/gradle/src
+COPY --chown=gradle:gradle ./ /home/gradle/src
 WORKDIR /home/gradle/src
 
 # Gradle을 사용하여 WAR 파일 빌드
