@@ -201,6 +201,20 @@ function Activity() {
             <Typography>비트캠프 (네이버 클라우드 웹 개발자 교육)</Typography>
           </TimelineContent>
         </TimelineItem>
+        <TimelineItem>
+          <TimelineOppositeContent>
+            <Typography color="textSecondary" sx={{ fontWeight: 'bold' }}>24.06.10~24.07.19</Typography>
+          </TimelineOppositeContent>
+          <TimelineSeparator>
+            <TimelineDot color="error">
+              <SchoolIcon />
+            </TimelineDot>
+            <TimelineConnector />
+          </TimelineSeparator>
+          <TimelineContent>
+            <Typography>AWS 클라우드 기반 데브옵스 교육(서울 뉴딜 일자리)</Typography>
+          </TimelineContent>
+        </TimelineItem>
 
 
       </Timeline>

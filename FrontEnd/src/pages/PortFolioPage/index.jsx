@@ -61,11 +61,11 @@ const PortFolio = () => {
                             onClick={() => handleTabClick('resume')}>
                             이력서
                         </button>
-                        <button
+                        {/* <button
                             className={`py-2 px-4 text-sm rounded-lg ${activeTab === 'progress' ? 'bg-sky-500 text-white' : 'bg-sky-300 text-gray-800 hover:bg-sky-700 hover:text-white'}`}
                             onClick={() => handleTabClick('progress')}>
                             개발진행 
-                        </button>
+                        </button> */}
                         <button
                             className={`py-2 px-4 text-sm rounded-lg ${activeTab === 'about' ? 'bg-yellow-500 text-white' : 'bg-yellow-300 text-gray-800 hover:bg-yellow-700 hover:text-white'}`}
                             onClick={() => handleTabClick('about')}>
