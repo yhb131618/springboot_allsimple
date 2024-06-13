@@ -34,7 +34,7 @@
 
     "@mui/lab": "^5.0.0-alpha.170",
 
-    "@mui/material": "^5.15.14",
+    "@mui/material": "^5.15.15",
 
     "@mui/x-data-grid": "^7.2.0",
 
@@ -84,7 +84,9 @@
 
     "uuid": "^9.0.1",
 
-    "web-vitals": "^3.5.2"
+    "web-vitals": "^3.5.2",
+
+    "zustand": "^4.5.2"
 
   },
 

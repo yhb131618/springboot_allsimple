@@ -11,18 +11,19 @@ import AllsimpleFront from './Sections/AllsimpleFront';
 import Certificate from './Sections/Certificate';
 import PortfolioBar from './Sections/PortfolioBar';
 import Progress from './Sections/Progress';
+import Resume from './Sections/Resume';
 import Skill from './Sections/SkillStack';
 import Work from './Sections/Work';
 
 const PortFolio = () => {
-  const [activeTab, setActiveTab] = useState('progress');
+  const [activeTab, setActiveTab] = useState('resume');
   const [showMainContent, setShowMainContent] = useState(true);
   const location = useLocation(); // 현재 위치를 가져옴
 
   useEffect(() => {
     // 라우트 변경시 메인 컨텐츠를 보여주도록 설정
     setShowMainContent(true);
-    setActiveTab('progress');
+    setActiveTab('resume');
   }, [location]); // 위치가 변경될 때마다 실행
 
   const handleTabClick = (tab) => {
@@ -54,10 +55,16 @@ const PortFolio = () => {
             {showMainContent ? (
                 <div className="container mx-auto px-4 pl-56">
                     <div className="flex border-b">
+
+                       <button
+                            className={`py-2 px-4 text-sm rounded-lg ${activeTab === 'resume' ? 'bg-gray-500 text-white' : 'bg-gray-300 text-gray-800 hover:bg-gray-700 hover:text-white'}`}
+                            onClick={() => handleTabClick('resume')}>
+                            이력서
+                        </button>
                         <button
-                            className={`py-2 px-4 text-sm rounded-lg ${activeTab === 'progress' ? 'bg-gray-500 text-white' : 'bg-gray-300 text-gray-800 hover:bg-gray-700 hover:text-white'}`}
+                            className={`py-2 px-4 text-sm rounded-lg ${activeTab === 'progress' ? 'bg-sky-500 text-white' : 'bg-sky-300 text-gray-800 hover:bg-sky-700 hover:text-white'}`}
                             onClick={() => handleTabClick('progress')}>
-                            개발진행 사항
+                            개발진행 
                         </button>
                         <button
                             className={`py-2 px-4 text-sm rounded-lg ${activeTab === 'about' ? 'bg-yellow-500 text-white' : 'bg-yellow-300 text-gray-800 hover:bg-yellow-700 hover:text-white'}`}
@@ -77,7 +84,7 @@ const PortFolio = () => {
                         <button
                             className={`py-2 px-4 text-sm rounded-lg ${activeTab === 'skill' ? 'bg-purple-500 text-white' : 'bg-purple-300 text-gray-800 hover:bg-purple-700 hover:text-white'}`}
                             onClick={() => handleTabClick('skill')}>
-                            기술스택
+                            기술
                         </button>
                         <button
                             className={`py-2 px-4 text-sm rounded-lg ${activeTab === 'work' ? 'bg-red-500 text-white' : 'bg-red-300 text-gray-800 hover:bg-red-700 hover:text-white'}`}
@@ -92,6 +99,7 @@ const PortFolio = () => {
                         {activeTab === 'certificate' && <Certificate />}
                         {activeTab === 'work' && <Work />}
                         {activeTab === 'progress' && <Progress />}
+                        {activeTab === 'resume' && <Resume />}
                         {activeTab === 'architecture' && <AllsimpleArchitecture />}
                     </div>
                 </div>

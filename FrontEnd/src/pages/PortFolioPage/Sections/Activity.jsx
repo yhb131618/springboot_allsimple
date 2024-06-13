@@ -10,18 +10,12 @@ import TimelineDot from '@mui/lab/TimelineDot';
 import TimelineItem from '@mui/lab/TimelineItem';
 import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
 import TimelineSeparator from '@mui/lab/TimelineSeparator';
-import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import React from 'react';
 function Activity() {
   return (
 
-    <Paper sx={{ 
-        p: 4,
-        borderRadius: '12px',
-        boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)'
-        }} >
-         
+    <div  className="p-6 rounded shadow-lg ">
     <h2 className="text-2xl font-semibold">활동 내역</h2>
       <Timeline position="alternate">
         <TimelineItem>
@@ -210,7 +204,7 @@ function Activity() {
 
 
       </Timeline>
-    </Paper>
+    </div>
 
   );
 }

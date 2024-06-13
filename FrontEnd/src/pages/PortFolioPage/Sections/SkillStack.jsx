@@ -16,18 +16,20 @@ function SkillStack() {
 
   return (
     <div className="p-6 rounded shadow-lg">
-          <h2 className="text-2xl font-semibold">기술 스택</h2>
+          <h2 className="text-2xl font-semibold" >기술 스택</h2>
+          - 현 프로젝트에 적용된 기술 
+          <div className= "p-2"></div>
       <TableContainer component={Paper}>
         <Table aria-label="Skill Stack Table">
           <TableHead>
-            <TableRow style={{ backgroundColor: '#e0e0e0' }}>
+            <TableRow style={{ backgroundColor: '#e0e0e0'  }} sx={{ height: '1rem' }}>
               {Object.keys(technologyData).map((key, index) => (
                 <TableCell key={key} style={{
                   width: columnWidth,
                   borderRight: index < Object.keys(technologyData).length - 1 ? '1px solid rgba(255, 255, 255, 1)' : '',
                   borderBottom: '2px solid rgba(224, 224, 224, 1)'
                 }}>
-                  <Typography variant="h3" component="div" style={{ fontSize: '1.25rem' }}>
+                  <Typography variant="h6" component="div" style={{ fontSize: '1.25rem' }}>
                     {key.toUpperCase()}
                   </Typography>
                 </TableCell>
@@ -36,7 +38,7 @@ function SkillStack() {
           </TableHead>
           <TableBody>
             {Array.from({ length: Math.max(...Object.values(technologyData).map(techs => techs.length)) }, (_, index) => (
-              <TableRow key={index}>
+              <TableRow key={index} sx={{ height: '1rem' }}>
                 {Object.values(technologyData).map((techs, colIndex) => (
                   <TableCell key={colIndex} style={{
                     width: columnWidth,
